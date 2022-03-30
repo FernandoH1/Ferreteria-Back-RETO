@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Objects;
 import java.util.UUID;
 
-@Document(collection = "cliente")
+@Document(collection = "clientes")
 public class Cliente {
 
     @Id
@@ -80,6 +80,6 @@ public class Cliente {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, celular, documentoID);
+        return Objects.hash(id);
     }
 }
