@@ -8,4 +8,10 @@ public interface ServiceInventario {
     Mono<Inventario> save(Inventario inventario);
 
     Flux<Inventario> findAll();
+
+    Mono<Inventario> delete(String id);
+
+    Mono<Inventario> update(String id, Inventario factura);
+
+    Mono<Inventario> findById(String id);
 }

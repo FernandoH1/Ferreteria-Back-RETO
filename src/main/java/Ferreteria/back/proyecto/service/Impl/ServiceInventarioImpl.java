@@ -22,4 +22,27 @@ public class ServiceInventarioImpl implements ServiceInventario {
     public Flux<Inventario> findAll() {
         return this.inventarioRepository.findAll();
     }
+
+    @Override
+    public Mono<Inventario> delete(String id) {
+        return this.inventarioRepository
+                .findById(id)
+                .flatMap(p -> this.inventarioRepository.deleteById(p.getId()).thenReturn(p));
+
+    }
+
+    @Override
+    public Mono<Inventario> update(String id, Inventario inventario) {
+        return this.inventarioRepository.findById(id)
+                .flatMap(inventario1 -> {
+                    inventario.setId(id);
+                    return save(inventario);
+                })
+                .switchIfEmpty(Mono.empty());
+    }
+
+    @Override
+    public Mono<Inventario> findById(String id) {
+        return this.inventarioRepository.findById(id);
+    }
 }
