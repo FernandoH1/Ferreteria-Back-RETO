@@ -35,7 +35,7 @@ public class ServiceClienteImpl implements ServiceCliente {
     @Override
     public Mono<Cliente> update(String id, Cliente cliente) {
         return this.clienteRepository.findById(id)
-                .flatMap(citasReactiva1 -> {
+                .flatMap(cliente1 -> {
                     cliente.setId(id);
                     return save(cliente);
                 })

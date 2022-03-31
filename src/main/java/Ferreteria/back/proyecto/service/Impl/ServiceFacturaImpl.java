@@ -22,4 +22,27 @@ public class ServiceFacturaImpl implements ServiceFactura {
     public Flux<Factura> findAll() {
         return this.facturaRepository.findAll();
     }
+
+    @Override
+    public Mono<Factura> delete(String id) {
+        return this.facturaRepository
+                .findById(id)
+                .flatMap(p -> this.facturaRepository.deleteById(p.getId()).thenReturn(p));
+
+    }
+
+    @Override
+    public Mono<Factura> update(String id, Factura factura) {
+        return this.facturaRepository.findById(id)
+                .flatMap(factura1 -> {
+                    factura.setId(id);
+                    return save(factura);
+                })
+                .switchIfEmpty(Mono.empty());
+    }
+
+    @Override
+    public Mono<Factura> findById(String id) {
+        return this.facturaRepository.findById(id);
+    }
 }

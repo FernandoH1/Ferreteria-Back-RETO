@@ -47,6 +47,6 @@ public class ClienteController {
     private Mono<Cliente> searchClienteByID(@PathVariable("id") String id) {
             return this.serviceCliente.findById(id);
     }
-    
+
 
 }
