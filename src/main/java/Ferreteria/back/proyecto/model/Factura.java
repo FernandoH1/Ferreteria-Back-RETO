@@ -17,20 +17,21 @@ public class Factura {
     private Date fecha;
     private String nombreCliente;
     private String atencionCliente;
+    private Double totalPago;
     private List<Producto> productosPagos;
-    private Double TotalPago;
+
 
     public Factura() {
     }
 
-    public Factura(String id, String consecutivo_de_facturas, Date fecha, String nombreCliente, String atencionCliente, List<Producto> productosPagos, Double totalPago) {
+    public Factura(String id, String consecutivo_de_facturas, Date fecha, String nombreCliente, String atencionCliente, Double totalPago, List<Producto> productosPagos) {
         this.id = id;
         this.consecutivo_de_facturas = consecutivo_de_facturas;
         this.fecha = fecha;
         this.nombreCliente = nombreCliente;
         this.atencionCliente = atencionCliente;
         this.productosPagos = productosPagos;
-        TotalPago = totalPago;
+        this.totalPago = totalPago;
     }
 
     public String getId() {
@@ -82,11 +83,11 @@ public class Factura {
     }
 
     public Double getTotalPago() {
-        return TotalPago;
+        return totalPago;
     }
 
     public void setTotalPago(Double totalPago) {
-        TotalPago = totalPago;
+        this.totalPago = totalPago;
     }
 
     @Override
@@ -98,7 +99,7 @@ public class Factura {
                 ", nombreCliente='" + nombreCliente + '\'' +
                 ", atencionCliente='" + atencionCliente + '\'' +
                 ", productosPagos=" + productosPagos +
-                ", TotalPago=" + TotalPago +
+                ", TotalPago=" + totalPago +
                 '}';
     }
 
@@ -107,7 +108,7 @@ public class Factura {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Factura factura = (Factura) o;
-        return Objects.equals(id, factura.id) && Objects.equals(consecutivo_de_facturas, factura.consecutivo_de_facturas) && Objects.equals(fecha, factura.fecha) && Objects.equals(nombreCliente, factura.nombreCliente) && Objects.equals(atencionCliente, factura.atencionCliente) && Objects.equals(productosPagos, factura.productosPagos) && Objects.equals(TotalPago, factura.TotalPago);
+        return Objects.equals(id, factura.id) && Objects.equals(consecutivo_de_facturas, factura.consecutivo_de_facturas) && Objects.equals(fecha, factura.fecha) && Objects.equals(nombreCliente, factura.nombreCliente) && Objects.equals(atencionCliente, factura.atencionCliente) && Objects.equals(productosPagos, factura.productosPagos) && Objects.equals(totalPago, factura.totalPago);
     }
 
     @Override

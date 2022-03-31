@@ -1,6 +1,5 @@
 package Ferreteria.back.proyecto.controller;
 
-
 import Ferreteria.back.proyecto.model.Cliente;
 import Ferreteria.back.proyecto.service.Impl.ServiceClienteImpl;
 import org.springframework.beans.factory.annotation.Autowired;
