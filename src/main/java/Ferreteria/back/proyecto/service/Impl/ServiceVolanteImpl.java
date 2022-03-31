@@ -1,6 +1,5 @@
 package Ferreteria.back.proyecto.service.Impl;
 
-import Ferreteria.back.proyecto.model.Proveedor;
 import Ferreteria.back.proyecto.model.Volante;
 import Ferreteria.back.proyecto.repository.VolanteRepository;
 import Ferreteria.back.proyecto.service.ServiceVolante;
@@ -22,5 +21,28 @@ public class ServiceVolanteImpl implements ServiceVolante {
     @Override
     public Flux<Volante> findAll() {
         return this.volanteRepository.findAll();
+    }
+
+    @Override
+    public Mono<Volante> delete(String id) {
+        return this.volanteRepository
+                .findById(id)
+                .flatMap(p -> this.volanteRepository.deleteById(p.getId()).thenReturn(p));
+
+    }
+
+    @Override
+    public Mono<Volante> update(String id, Volante volante) {
+        return this.volanteRepository.findById(id)
+                .flatMap(volante1 -> {
+                    volante.setId(id);
+                    return save(volante);
+                })
+                .switchIfEmpty(Mono.empty());
+    }
+
+    @Override
+    public Mono<Volante> findById(String id) {
+        return this.volanteRepository.findById(id);
     }
 }

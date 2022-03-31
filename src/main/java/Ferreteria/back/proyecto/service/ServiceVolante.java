@@ -8,4 +8,10 @@ public interface ServiceVolante {
     Mono<Volante> save(Volante volante);
 
     Flux<Volante> findAll();
+
+    Mono<Volante> delete(String id);
+
+    Mono<Volante> update(String id, Volante volante);
+
+    Mono<Volante> findById(String id);
 }

@@ -11,7 +11,7 @@ public interface ServiceInventario {
 
     Mono<Inventario> delete(String id);
 
-    Mono<Inventario> update(String id, Inventario factura);
+    Mono<Inventario> update(String id, Inventario inventario);
 
     Mono<Inventario> findById(String id);
 }
