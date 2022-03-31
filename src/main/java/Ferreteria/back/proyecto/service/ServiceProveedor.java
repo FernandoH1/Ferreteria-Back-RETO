@@ -8,4 +8,10 @@ public interface ServiceProveedor {
     Mono<Proveedor> save(Proveedor proveedor);
 
     Flux<Proveedor> findAll();
+
+    Mono<Proveedor> delete(String id);
+
+    Mono<Proveedor> update(String id, Proveedor proveedor);
+
+    Mono<Proveedor> findById(String id);
 }

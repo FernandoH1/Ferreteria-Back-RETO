@@ -22,4 +22,27 @@ public class ServiceProveedorImpl implements ServiceProveedor {
     public Flux<Proveedor> findAll() {
         return this.proveedorRepository.findAll();
     }
+
+    @Override
+    public Mono<Proveedor> delete(String id) {
+        return this.proveedorRepository
+                .findById(id)
+                .flatMap(p -> this.proveedorRepository.deleteById(p.getId()).thenReturn(p));
+
+    }
+
+    @Override
+    public Mono<Proveedor> update(String id, Proveedor proveedor) {
+        return this.proveedorRepository.findById(id)
+                .flatMap(proveedor1 -> {
+                    proveedor.setId(id);
+                    return save(proveedor);
+                })
+                .switchIfEmpty(Mono.empty());
+    }
+
+    @Override
+    public Mono<Proveedor> findById(String id) {
+        return this.proveedorRepository.findById(id);
+    }
 }
