@@ -4,6 +4,7 @@ import Ferreteria.back.proyecto.model.Cliente;
 import Ferreteria.back.proyecto.service.Impl.ServiceClienteImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -24,6 +25,22 @@ public class ClienteController {
     @GetMapping(value = "/cliente")
     private Flux<Cliente> AllClientes() {
         return this.serviceCliente.findAll();
+    }
+
+    @DeleteMapping("/delete/cliente/{id}")
+    private Mono<ResponseEntity<Cliente>> deleteCliente(@PathVariable("id") String id) {
+        return this.serviceCliente.delete(id)
+                .flatMap(Cliente -> Mono.just(ResponseEntity.ok(Cliente)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+
+    }
+
+    @PutMapping("/edit/cliente/{id}")
+    private Mono<ResponseEntity<Cliente>> update(@PathVariable("id") String id, @RequestBody Cliente cliente) {
+        return this.serviceCliente.update(id, cliente)
+                .flatMap(cliente1 -> Mono.just(ResponseEntity.ok(cliente1)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+
     }
 
 

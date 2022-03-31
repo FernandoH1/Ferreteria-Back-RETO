@@ -23,5 +23,23 @@ public class ServiceClienteImpl implements ServiceCliente {
         return this.clienteRepository.findAll();
     }
 
+    @Override
+    public Mono<Cliente> delete(String id) {
+        return this.clienteRepository
+                .findById(id)
+                .flatMap(p -> this.clienteRepository.deleteById(p.getId()).thenReturn(p));
+
+    }
+
+    @Override
+    public Mono<Cliente> update(String id, Cliente cliente) {
+        return this.clienteRepository.findById(id)
+                .flatMap(citasReactiva1 -> {
+                    cliente.setId(id);
+                    return save(cliente);
+                })
+                .switchIfEmpty(Mono.empty());
+    }
+
 
 }

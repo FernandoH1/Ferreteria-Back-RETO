@@ -8,4 +8,8 @@ public interface ServiceCliente {
     Mono<Cliente> save(Cliente cliente);
 
     Flux<Cliente> findAll();
+
+    Mono<Cliente> delete(String id);
+
+    Mono<Cliente> update(String id, Cliente cliente);
 }
