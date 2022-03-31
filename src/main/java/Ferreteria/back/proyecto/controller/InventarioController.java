@@ -2,6 +2,7 @@ package Ferreteria.back.proyecto.controller;
 
 import Ferreteria.back.proyecto.model.Factura;
 import Ferreteria.back.proyecto.model.Inventario;
+import Ferreteria.back.proyecto.model.Producto;
 import Ferreteria.back.proyecto.service.Impl.ServiceInventarioImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
@@ -46,5 +50,17 @@ public class InventarioController {
     @GetMapping(value = "/search/inventario/{id}")
     private Mono<Inventario> searchInventarioByID(@PathVariable("id") String id) {
         return this.serviceInventario.findById(id);
+    }
+
+    @GetMapping(value = "/comprados/inventario")
+    private Flux<Inventario> productosCompradosInv() {
+        return this.serviceInventario.findAll()
+                .map(p -> {
+                    List<Producto> productoListComprados = p.getProductoList()
+                            .stream()
+                            .filter(i -> i.isComprado() == true).collect(Collectors.toList());
+                    p.setProductoList(productoListComprados);
+            return p;
+        }).filter(inventario -> inventario.getProductoList().size() > 0);
     }
 }

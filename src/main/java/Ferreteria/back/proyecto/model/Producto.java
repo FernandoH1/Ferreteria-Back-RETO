@@ -11,6 +11,8 @@ public class Producto {
 
     private String nombre;
 
+    private boolean isComprado;
+
     private double precio;
 
     public Producto() {
@@ -20,6 +22,21 @@ public class Producto {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
+    }
+
+    public Producto(String id, String nombre, boolean isComprado, double precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.isComprado = isComprado;
+        this.precio = precio;
+    }
+
+    public boolean isComprado() {
+        return isComprado;
+    }
+
+    public void setComprado(boolean comprado) {
+        isComprado = comprado;
     }
 
     public String getId() {

@@ -14,4 +14,5 @@ public interface ServiceInventario {
     Mono<Inventario> update(String id, Inventario inventario);
 
     Mono<Inventario> findById(String id);
+
 }

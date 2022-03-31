@@ -115,4 +115,10 @@ public class Factura {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public void calcularPago(){
+        for (Producto producto:this.productosPagos) {
+            this.totalPago+=producto.getPrecio();
+        }
+    }
 }
