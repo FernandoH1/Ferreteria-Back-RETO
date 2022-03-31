@@ -15,16 +15,16 @@ public class Volante {
 
     private String nombreProveedor;
 
-    private List<Producto> productoList;
-
     private Date fecha;
 
     private String documentoProveedorID;
 
+    private List<Producto> productoList;
+
     public Volante() {
     }
 
-    public Volante(String id, String nombreProveedor, List<Producto> productoList, Date fecha, String documentoProveedorID) {
+    public Volante(String id, String nombreProveedor, Date fecha, String documentoProveedorID,  List<Producto> productoList) {
         this.id = id;
         this.nombreProveedor = nombreProveedor;
         this.productoList = productoList;
