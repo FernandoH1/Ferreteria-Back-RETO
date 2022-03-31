@@ -1,6 +1,5 @@
 package Ferreteria.back.proyecto.controller;
 
-import Ferreteria.back.proyecto.model.Factura;
 import Ferreteria.back.proyecto.model.Inventario;
 import Ferreteria.back.proyecto.service.Impl.ServiceInventarioImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,12 @@ public class InventarioController {
 
     @PostMapping("/inventario")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<Inventario> saveFactura(@RequestBody Inventario inventario) {
+    private Mono<Inventario> saveInventario(@RequestBody Inventario inventario) {
         return this.serviceInventario.save(inventario);
     }
 
     @GetMapping(value = "/inventario")
-    private Flux<Inventario> allFacturas() {
+    private Flux<Inventario> allInventarios() {
         return this.serviceInventario.findAll();
     }
 }

@@ -17,12 +17,12 @@ public class ClienteController {
 
     @PostMapping("/cliente")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<Cliente> save(@RequestBody Cliente cliente) {
+    private Mono<Cliente> saveCliente(@RequestBody Cliente cliente) {
         return this.serviceCliente.save(cliente);
     }
 
     @GetMapping(value = "/cliente")
-    private Flux<Cliente> findAll() {
+    private Flux<Cliente> AllClientes() {
         return this.serviceCliente.findAll();
     }
 

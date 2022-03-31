@@ -1,6 +1,5 @@
 package Ferreteria.back.proyecto.service.Impl;
 
-import Ferreteria.back.proyecto.model.Factura;
 import Ferreteria.back.proyecto.model.Inventario;
 import Ferreteria.back.proyecto.repository.InventarioRepository;
 import Ferreteria.back.proyecto.service.ServiceInventario;
