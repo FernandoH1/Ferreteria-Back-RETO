@@ -36,12 +36,17 @@ public class ClienteController {
     }
 
     @PutMapping("/edit/cliente/{id}")
-    private Mono<ResponseEntity<Cliente>> update(@PathVariable("id") String id, @RequestBody Cliente cliente) {
+    private Mono<ResponseEntity<Cliente>> updateCliente(@PathVariable("id") String id, @RequestBody Cliente cliente) {
         return this.serviceCliente.update(id, cliente)
                 .flatMap(cliente1 -> Mono.just(ResponseEntity.ok(cliente1)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
 
     }
 
+    @GetMapping(value = "/search/cliente/{id}")
+    private Mono<Cliente> searchClienteByID(@PathVariable("id") String id) {
+            return this.serviceCliente.findById(id);
+    }
+    
 
 }

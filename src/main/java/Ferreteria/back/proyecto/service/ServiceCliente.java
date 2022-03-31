@@ -12,4 +12,6 @@ public interface ServiceCliente {
     Mono<Cliente> delete(String id);
 
     Mono<Cliente> update(String id, Cliente cliente);
+
+    Mono<Cliente> findById(String id);
 }
