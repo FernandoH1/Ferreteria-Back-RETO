@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 public class InventarioController {
     @Autowired
     private ServiceInventarioImpl serviceInventario;
@@ -52,15 +52,4 @@ public class InventarioController {
         return this.serviceInventario.findById(id);
     }
 
-    @GetMapping(value = "/comprados/inventario")
-    private Flux<Inventario> productosCompradosInv() {
-        return this.serviceInventario.findAll()
-                .map(p -> {
-                    List<Producto> productoListComprados = p.getProductoList()
-                            .stream()
-                            .filter(i -> i.isComprado() == true).collect(Collectors.toList());
-                    p.setProductoList(productoListComprados);
-            return p;
-        }).filter(inventario -> inventario.getProductoList().size() > 0);
-    }
 }

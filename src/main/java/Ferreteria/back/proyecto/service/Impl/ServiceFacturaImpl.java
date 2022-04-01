@@ -27,7 +27,7 @@ public class ServiceFacturaImpl implements ServiceFactura {
     public Mono<Factura> delete(String id) {
         return this.facturaRepository
                 .findById(id)
-                .flatMap(p -> this.facturaRepository.deleteById(p.getId()).thenReturn(p));
+                .flatMap(p -> this.facturaRepository.deleteById(p.getConsecutivo_de_facturas()).thenReturn(p));
 
     }
 
@@ -35,7 +35,7 @@ public class ServiceFacturaImpl implements ServiceFactura {
     public Mono<Factura> update(String id, Factura factura) {
         return this.facturaRepository.findById(id)
                 .flatMap(factura1 -> {
-                    factura.setId(id);
+                    factura.setConsecutivo_de_facturas(id);
                     return save(factura);
                 })
                 .switchIfEmpty(Mono.empty());

@@ -11,9 +11,11 @@ public class Producto {
 
     private String nombre;
 
-    private boolean isComprado;
+    private int cantidad;
 
     private double precio;
+
+    private Proveedor proveedor;
 
     public Producto() {
     }
@@ -24,19 +26,28 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Producto(String id, String nombre, boolean isComprado, double precio) {
+    public Producto(String id, String nombre, int cantidad, double precio, Proveedor proveedor) {
         this.id = id;
         this.nombre = nombre;
-        this.isComprado = isComprado;
+        this.cantidad = cantidad;
         this.precio = precio;
+        this.proveedor = proveedor;
     }
 
-    public boolean isComprado() {
-        return isComprado;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setComprado(boolean comprado) {
-        isComprado = comprado;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 
     public String getId() {
@@ -68,7 +79,9 @@ public class Producto {
         return "Producto{" +
                 "id='" + id + '\'' +
                 ", nombre='" + nombre + '\'' +
+                ", cantidad=" + cantidad +
                 ", precio=" + precio +
+                ", proveedor=" + proveedor +
                 '}';
     }
 
@@ -77,7 +90,7 @@ public class Producto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Producto producto = (Producto) o;
-        return Double.compare(producto.precio, precio) == 0 && Objects.equals(id, producto.id) && Objects.equals(nombre, producto.nombre);
+        return cantidad == producto.cantidad && Double.compare(producto.precio, precio) == 0 && Objects.equals(id, producto.id) && Objects.equals(nombre, producto.nombre) && Objects.equals(proveedor, producto.proveedor);
     }
 
     @Override
